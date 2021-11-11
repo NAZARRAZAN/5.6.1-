@@ -1,6 +1,6 @@
 pass_symbol = "x"
 list_ = ["  ", 0, 1, 2]
-line = [0, "-", "-", "-","\n", 1, "-", "-", "-","\n", 2, "-", "-", "-"]
+line = [0, "-", "-", "-", "\n", 1, "-", "-", "-", "\n", 2, "-", "-", "-"]
 print(*list_, "\n", *line)
 
 
@@ -11,37 +11,29 @@ def winner(check_element):
             for n in range(len(line) - 2):
                 if check_element == line[n] and check_element == line[n + k] and check_element == line[n + k * 2]:
                     return True
-        if k == 4:
+        elif k == 4:
             n = 3
             if check_element == line[n] and check_element == line[n + k] and check_element == line[n + k * 2]:
                 return True
-        if k == 5:
+        elif k == 5:
             for n in range(4):
                 if check_element == line[n] and check_element == line[n + k] and check_element == line[n + k * 2]:
                     return True
-        if k == 6:
+        elif k == 6:
             n = 1
             if check_element == line[n] and check_element == line[n + k] and check_element == line[n + k * 2]:
                 return True
 
 
-
-
-
 while True:
-    position = list(map(int, input("print two number from 0 to 2-->").split()))
+    coordinata_y = int(input("Select one number on the VERTICAL (Y) axis-->"))
+    coordinata_x = int(input("Select one number on the HORIZONTAL (X) axis-->"))
+    x = coordinata_y + coordinata_x + 1
 
-
-    if len(position) > 2:
-        print("Too much numbers")
-        continue
-    elif position[0] > 2  or position[1] >  2 or position[0] < 0  or position[1] < 0:
+    if not (0 < coordinata_y < 2) or not (0 < coordinata_x < 2):
         print("Number not in diapason")
         continue
-
-    x = line.index(position[0]) + position[1] + 1
-
-    if line[x] == "x" or line[x] == "o":
+    elif line[x] == "x" or line[x] == "o":
         print("Choose empty space")
         continue
 
@@ -51,11 +43,10 @@ while True:
     if winner(pass_symbol):
         print("Game Over\nWinner--> " + pass_symbol)
         break
-    elif not "-" in line:
+    elif "-" not in line:
         print("Draw")
         break
-
-    if pass_symbol == "x":
+    elif pass_symbol == "x":
         pass_symbol = "o"
     else:
         pass_symbol = "x"
