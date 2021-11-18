@@ -1,7 +1,7 @@
 pass_symbol = "x"
-list_ = ["  ", 0, 1, 2]
+list_head = ["  ", 0, 1, 2]
 line = [0, "-", "-", "-", "\n", 1, "-", "-", "-", "\n", 2, "-", "-", "-"]
-print(*list_, "\n", *line)
+print(*list_head, "\n", *line)
 
 
 def winner(check_element):
@@ -28,9 +28,9 @@ def winner(check_element):
 while True:
     coordinata_y = int(input("Select one number on the VERTICAL (Y) axis-->"))
     coordinata_x = int(input("Select one number on the HORIZONTAL (X) axis-->"))
-    x = coordinata_y + coordinata_x + 1
+    x = coordinata_y * 5 + coordinata_x + 1
 
-    if not (0 < coordinata_y < 2) or not (0 < coordinata_x < 2):
+    if not (0 <= coordinata_y <= 2) or not (0 <= coordinata_x <= 2):
         print("Number not in diapason")
         continue
     elif line[x] == "x" or line[x] == "o":
@@ -38,7 +38,7 @@ while True:
         continue
 
     line[x] = pass_symbol
-    print(*list_, "\n", *line)
+    print(*list_head, "\n", *line)
 
     if winner(pass_symbol):
         print("Game Over\nWinner--> " + pass_symbol)
